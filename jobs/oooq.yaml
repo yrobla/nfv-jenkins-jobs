@@ -18,7 +18,7 @@
           # workaround: we need an updated version of tripleo-quickstart
           git clone https://git.openstack.org/yrobla/tripleo-quickstart-1
           cd tripleo-quickstart
-          bash ./ci-scripts/usbkey/quickstart.sh --working-dir /home/jenkins/quickstart --tags all --skip-tags overcloud-validate -e test_tempest=1 -e prepare_tempest=1  --ansible-debug 127.0.0.2 2>&1 | tee {{ jenkins_workspace }}job_{{ jenkins_build_id }}.log
+          bash ./ci-scripts/usbkey/quickstart.sh --working-dir /home/jenkins/quickstart --tags all --skip-tags overcloud-validate -e test_tempest=1 -e prepare_tempest=1  --ansible-debug 127.0.0.2 2>&1 | tee ./job_${BUILD_ID}.log
       - shell: |
           # deploy logs
           export ANSIBLE_INVENTORY=/home/jenkins/quickstart/hosts
@@ -26,7 +26,7 @@
           export SSH_CONFIG="/home/jenkins/quickstart/ssh.config.ansible"
           export ANSIBLE_SSH_ARGS="-F ${{SSH_CONFIG}}"
           git clone https://github.com/yrobla/tripleo-quickstart-nfv-collect-logs.git
-          ansible-playbook -vvvv -e @./tripleo-quickstart-nfv-collect-logs/configs/nfvci-logs.yml -e artcl_collect_dir={{ jenkins_workspace }}/logs ./tripleo-quickstart-nfv-collect-logs/playbooks/collect-logs.yml
+          ansible-playbook -vvvv -e @./tripleo-quickstart-nfv-collect-logs/configs/nfvci-logs.yml -e artcl_collect_dir=${WORKSPACE}/logs ./tripleo-quickstart-nfv-collect-logs/playbooks/collect-logs.yml
     wrappers:
       - build-timeout:
           timeout: 180
@@ -65,7 +65,7 @@
           export SSH_CONFIG="/home/jenkins/quickstart/ssh.config.ansible"
           export ANSIBLE_SSH_ARGS="-F ${{SSH_CONFIG}}"
           git clone https://github.com/yrobla/tripleo-quickstart-nfv-collect-logs.git
-          ansible-playbook -vvvv -e @./tripleo-quickstart-nfv-collect-logs/configs/tempest.yml -e artcl_collect_dir={{ jenkins_workspace }}/logs --limit undercloud ./tripleo-quickstart-nfv-collect-logs/playbooks/collect-logs.yml
+          ansible-playbook -vvvv -e @./tripleo-quickstart-nfv-collect-logs/configs/tempest.yml -e artcl_collect_dir=${WORKSPACE}/logs --limit undercloud ./tripleo-quickstart-nfv-collect-logs/playbooks/collect-logs.yml
     wrappers:
       - build-timeout:
           timeout: 180
