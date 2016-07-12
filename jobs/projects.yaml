@@ -1,0 +1,11 @@
+#
+# The projects in this file are sorted alphabetical.
+#
+
+- project:
+    name: oooq_test
+    node: baremetal-slave
+
+    jobs:
+      - deploy_oooq
+      - validate_oooq

@@ -1,0 +1,66 @@
+- builder:
+    name: contact
+    builders:
+      - shell: |
+          #!/bin/sh
+          echo "For problems with this job, contact {name} <{email}> freenode: {irc}"
+- builder:
+    name: print-template-name
+    builders:
+      - shell: 'echo JJB template: {template-name}'
+
+- builder:
+    name: revoke-sudo
+    builders:
+      - shell: |
+          #!/bin/bash -x
+          sudo rm -f /etc/sudoers.d/jenkins-sudo
+          # Prove that general sudo access is actually revoked
+          ! sudo -n true
+- builder:
+    name: diskimage-builder-install
+    builders:
+      - shell: |
+          sudo apt-get update
+          sudo apt-get install -y qemu kpartx debootstrap
+          sudo -H pip install dib-utils
+          sudo -H pip install diskimage-builder
+- builder:
+    name: pin-pip
+    builders:
+      - shell: sudo pip install "pip<8" "virtualenv<14"
+
+- builder:
+    name: link-logs
+    builders:
+      - shell: |
+          #!/bin/sh
+          echo "Detailed logs: http://$STATIC_HOSTNAME/$LOG_PATH/"
+- wrapper:
+    name: build-timeout
+    wrappers:
+      - timeout:
+          timeout: '{timeout}'
+          timeout-var: 'BUILD_TIMEOUT'
+          fail: true
+
+# ======================================================================
+
+- publisher:
+    name: tarball
+    publishers:
+      - scp:
+          site: '{site}'
+          files:
+            - target: 'tarballs/{project}/'
+              source: 'dist/*.tar.gz'
+
+- publisher:
+    name: console-log
+    publishers:
+      - scp:
+          site: '{site}'
+          files:
+            - target: 'logs/$LOG_PATH'
+              copy-console: true
+copy-after-failure: true

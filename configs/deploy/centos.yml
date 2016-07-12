@@ -1,0 +1,4 @@
+test_tempest: 1
+prepare_tempest: 1
+introspect: false
+undercloud_memory: 16384

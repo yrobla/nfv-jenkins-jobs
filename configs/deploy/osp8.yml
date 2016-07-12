@@ -1,0 +1,6 @@
+test_tempest: 1
+prepare_tempest: 1
+introspect: false
+undercloud_memory: 16384
+undercloud_image_url: file:///opt/oooq-images/undercloud.qcow2
+overcloud_image_url: file:///opt/oooq-images/ironic-python-agent.tar
