@@ -2,7 +2,7 @@ artib_base_os: rhel7
 artib_build_system: delorean
 artib_minimal_base_image_url: file:///opt/rhel-guest-image-7.2-20160302.0.x86_64.qcow2
 artib_release: liberty
-artib_repo_script: \$\{WORKSPACE\}/buildimages-rhel/rhel_osp8.j2
-artib_working_dir: \$\{WORKSPACE\}/oooq-images
+artib_repo_script: {{ jenkins_workspace }}/buildimages-rhel/rhel_osp8.j2
+artib_working_dir: {{ jenkins_workspace }}/oooq-images
 publish: false
-undercloud_image_url: file:///\$\{WORKSPACE\}/oooq-images/undercloud.qcow2
+undercloud_image_url: file:///{{ jenkins_workspace }}/oooq-images/undercloud.qcow2
