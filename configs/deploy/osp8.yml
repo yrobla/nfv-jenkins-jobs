@@ -1,10 +1,12 @@
 test_tempest: 1
 prepare_tempest: 1
-undercloud_memory: 16384
-undercloud_image_url: http://rhos-release.virt.bos.redhat.com/ci-images/rhos-8/current-passed-ci/undercloud.qcow2
-overcloud_image_url: http://rhos-release.virt.bos.redhat.com/ci-images/rhos-8/current-passed-ci/ironic-python-agent.tar
 
-step_introspect: true
+undercloud_memory: 16384
+undercloud_vcpu: 2
+control_memory: 6144
+compute_memory: 6144
+
+introspect: false
 
 # Define a single controller node and a single compute node.
 overcloud_nodes:
@@ -21,3 +23,6 @@ extra_args: >-
   --ntp-server pool.ntp.org
 
 network_isolation: true
+
+undercloud_image_url: http://rhos-release.virt.bos.redhat.com/ci-images/rhos-8/current-passed-ci/undercloud.qcow2
+overcloud_image_url: http://rhos-release.virt.bos.redhat.com/ci-images/rhos-8/current-passed-ci/ironic-python-agent.tar
