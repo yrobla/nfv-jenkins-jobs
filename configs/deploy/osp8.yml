@@ -3,3 +3,21 @@ prepare_tempest: 1
 undercloud_memory: 16384
 undercloud_image_url: http://rhos-release.virt.bos.redhat.com/ci-images/rhos-8/current-passed-ci/undercloud.qcow2
 overcloud_image_url: http://rhos-release.virt.bos.redhat.com/ci-images/rhos-8/current-passed-ci/ironic-python-agent.tar
+
+step_introspect: true
+
+# Define a single controller node and a single compute node.
+overcloud_nodes:
+  - name: control_0
+    flavor: control
+
+  - name: compute_0
+    flavor: compute
+
+# Tell tripleo how we want things done.
+extra_args: >-
+  --neutron-network-type vxlan
+  --neutron-tunnel-types vxlan
+  --ntp-server pool.ntp.org
+
+network_isolation: true
