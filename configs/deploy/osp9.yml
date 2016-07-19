@@ -1,0 +1,5 @@
+test_tempest: 1
+prepare_tempest: 1
+undercloud_memory: 16384
+undercloud_image_url: http://rhos-release.virt.bos.redhat.com/ci-images/rhos-9/current-passed-ci/undercloud.qcow2
+overcloud_image_url: http://rhos-release.virt.bos.redhat.com/ci-images/rhos-9/current-passed-ci/ironic-python-agent.tar
