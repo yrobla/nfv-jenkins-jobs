@@ -24,5 +24,8 @@ extra_args: >-
 
 network_isolation: true
 
+release: master
 undercloud_image_url: http://rhos-release.virt.bos.redhat.com/ci-images/rhos-10/current-passed-ci/undercloud.qcow2
 overcloud_image_url: http://rhos-release.virt.bos.redhat.com/ci-images/rhos-10/current-passed-ci/ironic-python-agent.tar
+ipa_image_url: http://rhos-release.virt.bos.redhat.com/ci-images/rhos-10/current-passed-ci/overcloud-full.tar
+
