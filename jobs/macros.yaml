@@ -63,4 +63,4 @@
           files:
             - target: 'logs/$LOG_PATH'
               copy-console: true
-copy-after-failure: true
+    copy-after-failure: true
