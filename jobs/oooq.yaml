@@ -84,4 +84,4 @@
     triggers:
       - reverse:
           jobs: 'deploy_oooq'
-result: 'success'
+    result: 'success'
