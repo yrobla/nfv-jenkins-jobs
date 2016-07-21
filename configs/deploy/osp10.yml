@@ -6,7 +6,7 @@ undercloud_vcpu: 2
 control_memory: 6144
 compute_memory: 6144
 
-introspect: false
+step_introspect: false
 
 # Define a single controller node and a single compute node.
 overcloud_nodes:

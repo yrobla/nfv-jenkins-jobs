@@ -1,4 +1,4 @@
 test_tempest: 1
 prepare_tempest: 1
-introspect: false
+step_introspect: false
 undercloud_memory: 16384
